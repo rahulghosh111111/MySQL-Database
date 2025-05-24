@@ -243,8 +243,8 @@ JOIN CLIENT C ON P.clientID = C.id;
 
 ## 👨‍💻 Author
 
-- **Your Name**
-- 📧 your.email@example.com
+- **Rahul Ghosh**
+- 📧 rahulghosh111111@gmail.com
 
 ---
 
