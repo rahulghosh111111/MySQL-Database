@@ -1,0 +1,107 @@
+CREATE DATABASE MULTIPLE_JOIN;
+USE MULTIPLE_JOIN;
+ CREATE TABLE PROJECT(
+ ID INT PRIMARY KEY,
+ empID INT,
+ NAME VARCHAR(225),
+ STARTDATE DATE,
+ clientID INT
+ );
+ 
+ INSERT INTO PROJECT(ID,empID,NAME,STARTDATE,clientID)
+ VALUES
+	(1, 1, 'A', '2021-04-21', 3),
+    (2, 2, 'B', '2021-03-12', 1),
+    (3, 3, 'C', '2021-01-16', 5),
+    (4, 3, 'D', '2021-04-27', 2),
+    (5, 5, 'E', '2021-05-01', 4);
+    
+    SELECT * FROM PROJECT;
+    
+ CREATE TABLE EMPLOYEE(
+ ID INT PRIMARY KEY,
+ FNAME VARCHAR(225),
+ LNAME VARCHAR(225),
+ AGE INT,
+ emailID VARCHAR(225),
+ PHONENO INT,
+ CITY VARCHAR(225)
+ );
+ 
+ INSERT INTO EMPLOYEE(ID,FNAME,LNAME,AGE,emailID,PHONENO,CITY)
+ VALUES
+	(1, 'Aman', 'Proto', 32, 'aman@gmail.com', '898', 'Delhi'),
+    (2, 'Yagya', 'Narayan', 44, 'yagya@gmail.com', '222', 'Palam'),
+    (3, 'Rahul', 'BD', 22, 'rahul@gmail.com', '444', 'Kolkata'),
+    (4, 'Jatin', 'Hermit', 31, 'jatin@gmail.com', '666', 'Raipur'),
+    (5, 'PK', 'Pandey', 21, 'pk@gmail.com', '555', 'Jaipur');
+    
+    CREATE TABLE CLIENT (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    age INT,
+    emailID VARCHAR(100),
+    PhoneNo VARCHAR(20),
+    City VARCHAR(100),
+    empID INT
+);
+
+INSERT INTO CLIENT(id, first_name, last_name, age, emailID, PhoneNo, City, empID)
+VALUES
+    (1, 'Mac', 'Rogers', 47, 'mac@hotmail.com', '333', 'Kolkata', 3),
+    (2, 'Max', 'Poirier', 27, 'max@gmail.com', '222', 'Kolkata', 3),
+    (3, 'Peter', 'Jain', 24, 'peter@abc.com', '111', 'Delhi', 1),
+    (4, 'Sushant', 'Aggarwal', 23, 'sushant@yahoo.com', '45454', 'Hyderabad', 5),
+    (5, 'Pratap', 'Singh', 36, 'p@xyz.com', '77767', 'Mumbai', 2);
+    
+    
+    -- INNER JOIN
+    -- Q: ENLIST ALL THE EMPLOYEE'S ID'S , NAME ALLONG WITH THE PROJECTS ALLOCATED TO THEM
+    SELECT E.ID, E.FNAME, E.LNAME,P.ID,P.NAME FROM EMPLOYEE AS E
+    INNER JOIN PROJECT AS P ON E.ID = P.EMPID;
+
+-- FETCH OUT ALL THE EMPLOYEE'S ID'S AND THEIR CONTACT DETAILS WHO HAVEBEEN WORKING FROM JAIPUR WITH THE CLIENTS NAMES
+-- WORKING IN HYDTRABAD.
+SELECT E.ID,E.EMAILID,E.PHONENO,C.FIRST_NAME,C.LAST_NAME FROM EMPLOYEE AS E
+INNER JOIN CLIENT AS C ON E.ID=C.EMPID WHERE E.CITY ='JAIPUR' AND C.CITY= 'Hyderabad';
+
+-- LEFT JOIN
+-- FETCH OUT EACH PROJECTS ALLOCATED TO EACH EMPLOYEE
+SELECT * FROM EMPLOYEE AS E
+LEFT JOIN PROJECT AS P ON E.ID = P.EMPID;
+
+
+-- RIGHT JOIN
+-- LIST ALL THE PROJECTS ALLONG WITH THE EMPLOYEES NAME AND THEIR ALLOCATED  EMAIL IDS
+SELECT P.ID, E.EMAILID,P.NAME,E.FNAME,E.LNAME FROM EMPLOYEE AS E 
+RIGHT JOIN PROJECT AS P ON E.ID = P.ID; 
+
+-- CROSS JOIN
+-- LIST OUT ALL THE COMBINATION POSSIBLE FOR THE EMPLOIEE'S NAME AND PROJECTS THAT CAN EXIST
+
+SELECT E.FNAME, E.LNAME, P.ID, P.NAME FROM EMPLOYEE AS E
+CROSS JOIN PROJECT AS P;
+
+-- UNION
+SELECT * FROM EMPLOYEE 
+UNION 
+SELECT * FROM PROJECT;
+
+-- INTERSECTI
+
+SELECT * FROM EMPLOYEE 
+EMULATE;
+SELECT * FROM PROJECT;
+
+
+
+
+
+
+
+
+
+
+
+ 

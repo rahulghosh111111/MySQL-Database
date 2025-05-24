@@ -1,0 +1,20 @@
+CREATE DATABASE temp;
+USE temp;
+
+CREATE table student(
+id INT PRIMARY KEY,
+name VARCHAR(225)
+);
+INSERT INTO student VALUES(1 , 'Rahul');
+SELECT * FROM student;
+SHOW DATABASES;
+SHOW TABLES;
+INSERT INTO student VALUES(2, 'Soham');
+SELECT * FROM student;
+DROP DATABASE temp; // DATABASE Delete
+
+ DROP DATABASE world;
+ DROP DATABASE sys;
+ DROP DATABASE sakila;
+
+ 
